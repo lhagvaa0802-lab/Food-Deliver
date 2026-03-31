@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/25LP8510/Desktop/expresjs-neo/server/src/generated/prisma",
+      "value": "C:\\Users\\lhagv\\OneDrive\\Desktop\\Food-Deliver\\server\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -32,12 +32,12 @@ const config: runtime.GetPrismaClientConfig = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/25LP8510/Desktop/expresjs-neo/server/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\lhagv\\OneDrive\\Desktop\\Food-Deliver\\server\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",

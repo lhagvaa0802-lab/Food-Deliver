@@ -1,10 +1,5 @@
-import { SignUp } from "./user-login/signUp";
-import { SignIn } from "./user-login/login";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div className="p-10 text-center">
-      <SignUp />
-    </div>
-  );
+  redirect("/login");
 }

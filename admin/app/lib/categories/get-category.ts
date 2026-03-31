@@ -1,18 +1,10 @@
-import { FoodCategory } from "../../types/food-category";
-import { cookies } from "next/headers";
+import { FoodCategory } from "@/app/types/food-category";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-const token = process.env.NEXT_PUBLIC_TOKEN;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export async function fetchCategory(): Promise<FoodCategory[]> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
-
-  const res = await fetch(`${BASE_URL}/categories`, {
+  const res = await fetch(`${BASE_URL}/api/categories`, {
     cache: "no-store",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 
   if (!res.ok) throw new Error("Failed to fetch categories");
@@ -21,4 +13,14 @@ export async function fetchCategory(): Promise<FoodCategory[]> {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data.categories)) return data.categories;
   return [];
+}
+
+export async function addCategory(categoryName: string): Promise<void> {
+  const res = await fetch(`${BASE_URL}/api/categories`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ categoryName }),
+  });
+
+  if (!res.ok) throw new Error("Failed to add category");
 }
