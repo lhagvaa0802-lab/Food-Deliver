@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
     });
 
     const data = await res.json();
+    console.log("LOGIN DATA:", JSON.stringify(data)); // 👈 add this
 
     if (!res.ok) {
       return NextResponse.json(
@@ -27,10 +28,10 @@ export async function POST(req: NextRequest) {
     );
 
     response.cookies.set("token", data.accessToken, {
-      httpOnly: true,
+      httpOnly: false, // 👈 change to false temporarily
       path: "/",
       maxAge: 60 * 60 * 40,
-      sameSite: "lax",
+      sameSite: "strict",
     });
 
     return response;

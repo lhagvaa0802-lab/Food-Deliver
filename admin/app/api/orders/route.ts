@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
 const BASE_URL = process.env.API_URL;
 
-export async function GET() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+export async function GET(req: NextRequest) {
+  const token = req.cookies.get("token")?.value;
+
+  console.log("TOKEN FROM REQ:", token);
 
   const res = await fetch(`${BASE_URL}/orders`, {
     cache: "no-store",
@@ -13,6 +13,7 @@ export async function GET() {
   });
 
   const data = await res.json();
+
   if (!res.ok)
     return NextResponse.json(
       { message: "Failed to fetch orders" },

@@ -470,10 +470,6 @@ export type FoodScalarRelationFilter = {
   isNot?: Prisma.FoodWhereInput
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type FloatFieldUpdateOperationsInput = {
   set?: number
   increment?: number

@@ -1,7 +1,17 @@
 import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
-export const createOrder = async (req: Request, res: Response) => {
+
+
+interface AuthRequest extends Request {
+  user?: {
+    userId: number;
+    email: string;
+    role: "USER" | "ADMIN";
+  };
+}
+
+export const createOrder = async (req: AuthRequest, res: Response) => {
   try {
     const { status, items } = req.body;
 
@@ -11,6 +21,7 @@ export const createOrder = async (req: Request, res: Response) => {
       data: {
         status,
         totalPrice: totalPriceValue,
+        userId: req.user?.userId,
         foodOrderItems: {
           create: items.map((item: { foodId: number; quantity: number }) => ({
             quantity: item.quantity,

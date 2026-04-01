@@ -1,7 +1,15 @@
 import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
-export const meUser = async (req: Request, res: Response) => {
+interface AuthRequest extends Request {
+  user?: {
+    userId: number;
+    email: string;
+    role: "USER" | "ADMIN";
+  };
+}
+
+export const meUser = async (req: AuthRequest, res: Response) => {
   try {
     const id = Number(req.params.id);
 
@@ -10,6 +18,7 @@ export const meUser = async (req: Request, res: Response) => {
       select: {
         email: true,
         phoneNumber: true,
+        address: true,
       },
     });
     console.log(user);

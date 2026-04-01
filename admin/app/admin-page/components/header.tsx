@@ -24,8 +24,9 @@ const gettUser = async () => {
     },
   });
 
-  const user = (await res.json()) as Root;
-  return user;
+  const user = await res.json();
+  console.log("USER DATA:", JSON.stringify(user));
+  return user as Root;
 };
 
 export const Header = async () => {

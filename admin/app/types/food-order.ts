@@ -7,6 +7,7 @@ export type FoodOrder = {
     id: number;
     email: string;
     phoneNumber: string;
+    address: string | null;
   };
   foodOrderItems: FoodOrderItem[];
   createdAt: string;

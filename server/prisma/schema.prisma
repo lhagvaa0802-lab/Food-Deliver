@@ -16,6 +16,7 @@ model User {
   password    String
   age         Int?
   phoneNumber String
+  address     String?
   role        Role        @default(USER)
   foodOrders  FoodOrder[] 
   createdAt   DateTime    @default(now())
