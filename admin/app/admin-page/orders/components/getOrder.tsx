@@ -3,6 +3,7 @@ import { FoodOrder } from "@/app/types/food-order";
 
 export const Order = async () => {
   const orders: FoodOrder[] = await fetchFoodOrders();
+  console.log("order--------", orders);
 
   return (
     <div className="flex flex-col gap-3">

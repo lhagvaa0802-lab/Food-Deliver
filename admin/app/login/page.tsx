@@ -43,8 +43,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left - Login Form */}
+    <div className="min-h-screen flex justify-between">
       <div className="w-full md:w-[400px] flex flex-col justify-center px-10 py-12 bg-white relative">
         <button className="absolute top-6 left-6 w-7 h-7 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-400 hover:bg-neutral-50 transition-colors text-sm">
           ‹
@@ -106,8 +105,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      {/* Right - Image */}
-      <div className="hidden md:flex flex-1">
+      <div className="h-[1200px] w-[1400px]">
         <img
           src="/images/delivery.png"
           alt="Delivery"

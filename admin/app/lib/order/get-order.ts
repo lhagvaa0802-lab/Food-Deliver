@@ -1,7 +1,8 @@
 import type { FoodOrder } from "@/app/types/food-order";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function fetchFoodOrders(): Promise<FoodOrder[]> {
-  const res = await fetch("/api/orders", {
+  const res = await fetch(`${BASE_URL}/api/orders`, {
     cache: "no-store",
   });
 
