@@ -15,3 +15,12 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const FoodOrderStatus = {
+  PENDING: 'PENDING',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type FoodOrderStatus = (typeof FoodOrderStatus)[keyof typeof FoodOrderStatus]

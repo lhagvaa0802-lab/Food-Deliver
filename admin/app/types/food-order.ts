@@ -1,7 +1,9 @@
+export type FoodOrderStatus = "PENDING" | "DELIVERED" | "CANCELLED";
+
 export type FoodOrder = {
   id: number;
   totalPrice: number;
-  status: string;
+  status: FoodOrderStatus; // 👈 update this
   userId: number;
   user: {
     id: number;

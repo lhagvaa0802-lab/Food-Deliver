@@ -986,6 +986,20 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
+
+/**
+ * Reference to a field of type 'FoodOrderStatus'
+ */
+export type EnumFoodOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodOrderStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'FoodOrderStatus[]'
+ */
+export type ListEnumFoodOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodOrderStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */

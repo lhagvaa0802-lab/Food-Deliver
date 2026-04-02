@@ -55,11 +55,17 @@ model FoodCategory {
 
 
 
+enum FoodOrderStatus {
+  PENDING
+  DELIVERED
+  CANCELLED
+}
+
 model FoodOrder {
   id             Int              @id @default(autoincrement())
   totalPrice     Float
-  status         String
-  user           User             @relation(fields: [userId], references: [id])
+  status         FoodOrderStatus   @default(PENDING)
+  user           User              @relation(fields: [userId], references: [id])
   userId         Int              
   foodOrderItems FoodOrderItems[]
   createdAt      DateTime         @default(now())

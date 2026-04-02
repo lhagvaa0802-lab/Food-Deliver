@@ -41,7 +41,7 @@ export type FoodOrderSumAggregateOutputType = {
 export type FoodOrderMinAggregateOutputType = {
   id: number | null
   totalPrice: number | null
-  status: string | null
+  status: $Enums.FoodOrderStatus | null
   userId: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -50,7 +50,7 @@ export type FoodOrderMinAggregateOutputType = {
 export type FoodOrderMaxAggregateOutputType = {
   id: number | null
   totalPrice: number | null
-  status: string | null
+  status: $Enums.FoodOrderStatus | null
   userId: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -196,7 +196,7 @@ export type FoodOrderGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type FoodOrderGroupByOutputType = {
   id: number
   totalPrice: number
-  status: string
+  status: $Enums.FoodOrderStatus
   userId: number
   createdAt: Date
   updatedAt: Date
@@ -228,7 +228,7 @@ export type FoodOrderWhereInput = {
   NOT?: Prisma.FoodOrderWhereInput | Prisma.FoodOrderWhereInput[]
   id?: Prisma.IntFilter<"FoodOrder"> | number
   totalPrice?: Prisma.FloatFilter<"FoodOrder"> | number
-  status?: Prisma.StringFilter<"FoodOrder"> | string
+  status?: Prisma.EnumFoodOrderStatusFilter<"FoodOrder"> | $Enums.FoodOrderStatus
   userId?: Prisma.IntFilter<"FoodOrder"> | number
   createdAt?: Prisma.DateTimeFilter<"FoodOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FoodOrder"> | Date | string
@@ -253,7 +253,7 @@ export type FoodOrderWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.FoodOrderWhereInput[]
   NOT?: Prisma.FoodOrderWhereInput | Prisma.FoodOrderWhereInput[]
   totalPrice?: Prisma.FloatFilter<"FoodOrder"> | number
-  status?: Prisma.StringFilter<"FoodOrder"> | string
+  status?: Prisma.EnumFoodOrderStatusFilter<"FoodOrder"> | $Enums.FoodOrderStatus
   userId?: Prisma.IntFilter<"FoodOrder"> | number
   createdAt?: Prisma.DateTimeFilter<"FoodOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FoodOrder"> | Date | string
@@ -281,7 +281,7 @@ export type FoodOrderScalarWhereWithAggregatesInput = {
   NOT?: Prisma.FoodOrderScalarWhereWithAggregatesInput | Prisma.FoodOrderScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"FoodOrder"> | number
   totalPrice?: Prisma.FloatWithAggregatesFilter<"FoodOrder"> | number
-  status?: Prisma.StringWithAggregatesFilter<"FoodOrder"> | string
+  status?: Prisma.EnumFoodOrderStatusWithAggregatesFilter<"FoodOrder"> | $Enums.FoodOrderStatus
   userId?: Prisma.IntWithAggregatesFilter<"FoodOrder"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"FoodOrder"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"FoodOrder"> | Date | string
@@ -289,7 +289,7 @@ export type FoodOrderScalarWhereWithAggregatesInput = {
 
 export type FoodOrderCreateInput = {
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutFoodOrdersInput
@@ -299,7 +299,7 @@ export type FoodOrderCreateInput = {
 export type FoodOrderUncheckedCreateInput = {
   id?: number
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   userId: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -308,7 +308,7 @@ export type FoodOrderUncheckedCreateInput = {
 
 export type FoodOrderUpdateInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutFoodOrdersNestedInput
@@ -318,7 +318,7 @@ export type FoodOrderUpdateInput = {
 export type FoodOrderUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -328,7 +328,7 @@ export type FoodOrderUncheckedUpdateInput = {
 export type FoodOrderCreateManyInput = {
   id?: number
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   userId: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -336,7 +336,7 @@ export type FoodOrderCreateManyInput = {
 
 export type FoodOrderUpdateManyMutationInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -344,7 +344,7 @@ export type FoodOrderUpdateManyMutationInput = {
 export type FoodOrderUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -446,6 +446,10 @@ export type FoodOrderUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.FoodOrderScalarWhereInput | Prisma.FoodOrderScalarWhereInput[]
 }
 
+export type EnumFoodOrderStatusFieldUpdateOperationsInput = {
+  set?: $Enums.FoodOrderStatus
+}
+
 export type FoodOrderCreateNestedOneWithoutFoodOrderItemsInput = {
   create?: Prisma.XOR<Prisma.FoodOrderCreateWithoutFoodOrderItemsInput, Prisma.FoodOrderUncheckedCreateWithoutFoodOrderItemsInput>
   connectOrCreate?: Prisma.FoodOrderCreateOrConnectWithoutFoodOrderItemsInput
@@ -462,7 +466,7 @@ export type FoodOrderUpdateOneRequiredWithoutFoodOrderItemsNestedInput = {
 
 export type FoodOrderCreateWithoutUserInput = {
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   foodOrderItems?: Prisma.FoodOrderItemsCreateNestedManyWithoutOrderInput
@@ -471,7 +475,7 @@ export type FoodOrderCreateWithoutUserInput = {
 export type FoodOrderUncheckedCreateWithoutUserInput = {
   id?: number
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   foodOrderItems?: Prisma.FoodOrderItemsUncheckedCreateNestedManyWithoutOrderInput
@@ -509,7 +513,7 @@ export type FoodOrderScalarWhereInput = {
   NOT?: Prisma.FoodOrderScalarWhereInput | Prisma.FoodOrderScalarWhereInput[]
   id?: Prisma.IntFilter<"FoodOrder"> | number
   totalPrice?: Prisma.FloatFilter<"FoodOrder"> | number
-  status?: Prisma.StringFilter<"FoodOrder"> | string
+  status?: Prisma.EnumFoodOrderStatusFilter<"FoodOrder"> | $Enums.FoodOrderStatus
   userId?: Prisma.IntFilter<"FoodOrder"> | number
   createdAt?: Prisma.DateTimeFilter<"FoodOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FoodOrder"> | Date | string
@@ -517,7 +521,7 @@ export type FoodOrderScalarWhereInput = {
 
 export type FoodOrderCreateWithoutFoodOrderItemsInput = {
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutFoodOrdersInput
@@ -526,7 +530,7 @@ export type FoodOrderCreateWithoutFoodOrderItemsInput = {
 export type FoodOrderUncheckedCreateWithoutFoodOrderItemsInput = {
   id?: number
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   userId: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -550,7 +554,7 @@ export type FoodOrderUpdateToOneWithWhereWithoutFoodOrderItemsInput = {
 
 export type FoodOrderUpdateWithoutFoodOrderItemsInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutFoodOrdersNestedInput
@@ -559,7 +563,7 @@ export type FoodOrderUpdateWithoutFoodOrderItemsInput = {
 export type FoodOrderUncheckedUpdateWithoutFoodOrderItemsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -568,14 +572,14 @@ export type FoodOrderUncheckedUpdateWithoutFoodOrderItemsInput = {
 export type FoodOrderCreateManyUserInput = {
   id?: number
   totalPrice: number
-  status: string
+  status?: $Enums.FoodOrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type FoodOrderUpdateWithoutUserInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   foodOrderItems?: Prisma.FoodOrderItemsUpdateManyWithoutOrderNestedInput
@@ -584,7 +588,7 @@ export type FoodOrderUpdateWithoutUserInput = {
 export type FoodOrderUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   foodOrderItems?: Prisma.FoodOrderItemsUncheckedUpdateManyWithoutOrderNestedInput
@@ -593,7 +597,7 @@ export type FoodOrderUncheckedUpdateWithoutUserInput = {
 export type FoodOrderUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFoodOrderStatusFieldUpdateOperationsInput | $Enums.FoodOrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -692,7 +696,7 @@ export type $FoodOrderPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     totalPrice: number
-    status: string
+    status: $Enums.FoodOrderStatus
     userId: number
     createdAt: Date
     updatedAt: Date
@@ -1123,7 +1127,7 @@ export interface Prisma__FoodOrderClient<T, Null = never, ExtArgs extends runtim
 export interface FoodOrderFieldRefs {
   readonly id: Prisma.FieldRef<"FoodOrder", 'Int'>
   readonly totalPrice: Prisma.FieldRef<"FoodOrder", 'Float'>
-  readonly status: Prisma.FieldRef<"FoodOrder", 'String'>
+  readonly status: Prisma.FieldRef<"FoodOrder", 'FoodOrderStatus'>
   readonly userId: Prisma.FieldRef<"FoodOrder", 'Int'>
   readonly createdAt: Prisma.FieldRef<"FoodOrder", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"FoodOrder", 'DateTime'>

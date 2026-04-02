@@ -3,13 +3,18 @@ import { cookies } from "next/headers";
 
 const BASE_URL = process.env.API_URL;
 
-export async function fetchFoodOrders(): Promise<FoodOrder[]> {
+export async function fetchFoodOrders(
+  startDate?: string,
+  endDate?: string,
+): Promise<FoodOrder[]> {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
-  console.log("TOKEN IN GET ORDER:", token);
+  const url = new URL(`${BASE_URL}/orders`);
+  if (startDate) url.searchParams.set("startDate", startDate);
+  if (endDate) url.searchParams.set("endDate", endDate);
 
-  const res = await fetch(`${BASE_URL}/orders`, {
+  const res = await fetch(url.toString(), {
     cache: "no-store",
     headers: {
       Authorization: `Bearer ${token}`,

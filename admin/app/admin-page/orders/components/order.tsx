@@ -1,5 +1,6 @@
 import { fetchFoodOrders } from "@/app/lib/order/get-order";
 import { FoodOrder } from "@/app/types/food-order";
+import { OrderStatusSelect } from "./orderStatusSelect";
 
 const statusStyles: Record<string, string> = {
   Pending: "bg-yellow-50 text-yellow-600 border border-yellow-200",
@@ -7,8 +8,15 @@ const statusStyles: Record<string, string> = {
   Cancelled: "bg-red-50 text-red-500 border border-red-200",
 };
 
-export const Order = async () => {
-  const orders: FoodOrder[] = await fetchFoodOrders();
+type Props = {
+  searchParams?: { startDate?: string; endDate?: string };
+};
+
+export const Order = async ({ searchParams }: Props) => {
+  const orders: FoodOrder[] = await fetchFoodOrders(
+    searchParams?.startDate,
+    searchParams?.endDate,
+  );
 
   return (
     <div className="bg-white rounded-xl p-6">
@@ -18,9 +26,7 @@ export const Order = async () => {
           <h1 className="text-lg font-bold text-neutral-800">Orders</h1>
           <p className="text-xs text-neutral-400">{orders.length} items</p>
         </div>
-        <button className="px-4 py-2 rounded-lg bg-neutral-100 text-neutral-500 text-xs font-medium hover:bg-neutral-200 transition-colors">
-          Change delivery state
-        </button>
+        
       </div>
 
       {/* Table */}
@@ -81,15 +87,16 @@ export const Order = async () => {
                   ${order.totalPrice.toFixed(2)}
                 </td>
                 <td className="py-3 pr-4 text-xs text-neutral-500 max-w-[160px] truncate">
-                  {order.user?.address ?? "—"} 
+                  {order.user?.address ?? "—"}
                   address
                 </td>
                 <td className="py-3">
-                  <span
-                    className={`px-2.5 py-1 rounded-full text-[11px] font-medium ${statusStyles[order.status] ?? "bg-neutral-100 text-neutral-500"}`}
-                  >
-                    {order.status}
-                  </span>
+                  <OrderStatusSelect
+                    orderId={order.id}
+                    currentStatus={
+                      order.status as "PENDING" | "DELIVERED" | "CANCELLED"
+                    }
+                  />
                 </td>
               </tr>
             ))}
