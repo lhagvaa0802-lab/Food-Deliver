@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     );
 
     response.cookies.set("token", data.accessToken, {
-      httpOnly: false, // 👈 change to false temporarily
+      httpOnly: false,
       path: "/",
       maxAge: 60 * 60 * 40,
       sameSite: "strict",
