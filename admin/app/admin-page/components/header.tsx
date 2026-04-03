@@ -31,6 +31,7 @@ const gettUser = async () => {
 
 export const Header = async () => {
   const data = await gettUser();
+  const shortEmail = data?.user?.email?.split("@")[0] ?? "Loading...";
 
   console.log(JSON.stringify(data));
 
@@ -45,7 +46,7 @@ export const Header = async () => {
           />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <p>{data?.user?.email ?? "Loading..."}</p>
+        {<p>{shortEmail}</p>}
       </div>
     </div>
   );
