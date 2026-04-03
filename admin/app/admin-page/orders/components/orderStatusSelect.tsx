@@ -19,30 +19,30 @@ export function OrderStatusSelect({ orderId, currentStatus }: Props) {
   const [status, setStatus] = useState<Status>(currentStatus);
   const [loading, setLoading] = useState(false);
 
-const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-  const newStatus = e.target.value as Status;
-  setLoading(true);
+  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newStatus = e.target.value as Status;
+    setLoading(true);
 
-  try {
-    const res = await fetch(`/api/orders/${orderId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: newStatus }),
-    });
+    try {
+      const res = await fetch(`/api/orders/${orderId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
 
-    console.log("STATUS:", res.status); // 👈 add this
-    const data = await res.json();
-    console.log("DATA:", data); // 👈 add this
+      console.log("STATUS:", res.status);
+      const data = await res.json();
+      console.log("DATA:", data);
 
-    if (res.ok) {
-      setStatus(newStatus);
+      if (res.ok) {
+        setStatus(newStatus);
+      }
+    } catch (e) {
+      console.error("Failed to update status");
+    } finally {
+      setLoading(false);
     }
-  } catch (e) {
-    console.error("Failed to update status");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <select
