@@ -12,7 +12,7 @@ const port = 4000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://food-deliver-n8v4.vercel.app/",
     credentials: true,
   }),
 );
