@@ -45,7 +45,7 @@ export const Header = async () => {
           />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <p>{data.user.email}</p>
+        <p>{data?.user?.email ?? "Loading..."}</p>
       </div>
     </div>
   );
