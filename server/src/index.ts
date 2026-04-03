@@ -9,14 +9,14 @@ import loginRouter from "./routes/login.routes";
 const app = express();
 const port = 4000;
 
-app.use(express.json());
-app.use(
-  cors({
-    origin: "https://food-deliver-n8v4.vercel.app",
-    credentials: true,
-  }),
-);
-
+// app.use(express.json());
+// app.use(
+//   cors({
+//     origin: "https://food-deliver-n8v4.vercel.app",
+//     credentials: true,
+//   }),
+// );
+app.use(cors());
 app.use("/users", userRouter);
 app.use("/foods", foodsRouter);
 app.use("/categories", categoryRouter);
