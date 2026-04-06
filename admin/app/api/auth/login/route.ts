@@ -27,12 +27,7 @@ export async function POST(req: NextRequest) {
       { status: 200 },
     );
 
-    response.cookies.set("token", data.accessToken, {
-      httpOnly: false,
-      path: "/",
-      maxAge: 60 * 60 * 40,
-      sameSite: "strict",
-    });
+    response.cookies.set("token", data.accessToken, {});
 
     return response;
   } catch (e) {

@@ -5,6 +5,7 @@ import { Plus, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { addFood } from "@/app/lib/food/add-food";
 import { FoodCategory } from "@/app/types/food-category";
+import { ImageUplaod } from "./ImageUpload";
 import {
   Dialog,
   DialogContent,
@@ -32,10 +33,12 @@ export function AddFoodButton({
     foodName: "",
     description: "",
     price: "",
-    image: "",
     ingredients: "",
     categoryId: categoryId,
   });
+
+  const [image, setImage] = useState("");
+  console.log("image: ", image);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -45,7 +48,7 @@ export function AddFoodButton({
   };
 
   const handleSubmit = async () => {
-    if (!form.foodName || !form.price || !form.image || !form.ingredients) {
+    if (!form.foodName || !form.price || !image || !form.ingredients) {
       setError("All fields are required.");
       return;
     }
@@ -56,7 +59,7 @@ export function AddFoodButton({
         foodName: form.foodName,
         description: " ",
         price: parseFloat(form.price),
-        image: form.image,
+        image: image,
         ingredients: form.ingredients,
         categoryId: Number(form.categoryId),
       });
@@ -65,10 +68,10 @@ export function AddFoodButton({
         foodName: "",
         description: "",
         price: "",
-        image: "",
         ingredients: "",
         categoryId: categoryId,
       });
+      setImage("");
       router.refresh();
     } catch (e) {
       setError("Failed to add food. Please try again.");
@@ -76,6 +79,7 @@ export function AddFoodButton({
       setLoading(false);
     }
   };
+  console.log(form);
 
   return (
     <>
@@ -145,13 +149,14 @@ export function AddFoodButton({
               <label className="text-xs font-medium text-neutral-500 mb-1.5 block">
                 Image URL
               </label>
-              <input
+              {/* <input
                 name="image"
                 value={form.image}
                 onChange={handleChange}
                 placeholder="https://..."
                 className="w-full px-3 py-2 text-sm rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-              />
+              /> */}
+              <ImageUplaod setImage={setImage} />
             </div>
 
             {/* <div>
