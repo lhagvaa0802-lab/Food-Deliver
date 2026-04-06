@@ -12,8 +12,9 @@ const port = 4000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://food-deliver-n8v4.vercel.app",
-    credentials: true,
+    // origin: "https://food-deliver-n8v4.vercel.app",
+    origin: true,
+    // credentials: true,
   }),
 );
 
