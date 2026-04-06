@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
 
     return response;
   } catch (e) {
+    console.log("=============", e);
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 },
